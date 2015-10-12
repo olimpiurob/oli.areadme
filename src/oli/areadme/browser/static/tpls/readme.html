@@ -1,0 +1,58 @@
+<mc-messages></mc-messages>
+<div class="row">
+  <div class="col-sm-4 well">
+    <ul class="nav nav-pills nav-stacked" ng-model='json_data.headings'>
+      <li ng-repeat="ngHeading in json_data.headings" class="headingItem"
+        ng-class="{'active': ngHeading.id == cur_head.id}">
+        <a ng-href="#/readme/{{ngHeading.id}}">{{ngHeading.title}}
+          <span ng-if="authenticated == 'True'"
+            class="remove-ctrl glyphicon glyphicon-remove pull-right"
+            ng-click="removeHeading($event, ngHeading)"></span>
+        </a>
+      </li>
+    </ul>
+    <div class="heading-controls"  ng-if="authenticated == 'True'">
+      <form class="form-inline">
+        <div class="form-group">
+          <label class="sr-only" for="category-submit">Add heading</label>
+          <div class="col-md-4">
+            <button ng-click="addHeading($event, headingTitle)" class="btn btn-default">Add</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-6">
+            <input ng-show="addheading" ng-model="headingTitle" type="text" placeholder="Heading title" class="form-control input-md" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="areadme-controls" ng-if="authenticated == 'True'">
+      <a class="pull-right" ng-if="cur_head" ng-href="#/readme/detail/{{cur_head.id}}">
+        <span class="glyphicon glyphicon-edit"></span>
+        <span>Edit</span>
+      </a>
+    </div>
+    <div class="areadme-content">
+      <div ng-if="cur_head.content" ng-bind-html="cur_head.content"></div>
+      <div ng-if="!cur_head && json_data">
+        <div ng-if="json_data.headings.length">
+          Select a category from the left
+        </div>
+        <div ng-if="!json_data.headings.length">
+          No content yet. Start adding categories to the left.
+        </div>
+      </div>
+      <div ng-if="cur_head && !cur_head.content">
+        No content yet
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="pull-right" ng-if="authenticated == 'True'">
+    <button ng-click="doSave()" class="btn btn-primary">Submit</button>
+  </div>
+</div>

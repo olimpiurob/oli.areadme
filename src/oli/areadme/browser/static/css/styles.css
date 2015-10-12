@@ -1,0 +1,29 @@
+.heading-title {
+    display: inline-block;
+    margin: 20px 0 20px 0;
+    padding: 6px 12px;
+}
+
+.heading-title .editable-click, .heading-title a.editable-click {
+    text-decoration: none;
+    color: black;
+    border-bottom: none;
+}
+
+.areadme-content {
+    clear: both;
+}
+
+.heading-controls {
+    overflow: hidden;
+    margin: 25px 0 10px 0;
+}
+
+.nav>li>a .remove-ctrl {
+    display: none;
+}
+
+.nav>li>a:focus .remove-ctrl,
+.nav>li>a:hover .remove-ctrl{
+    display:block;
+}

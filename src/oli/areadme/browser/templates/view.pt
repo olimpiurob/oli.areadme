@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="oli.areadme">
+
+      <head>
+        <metal:styleslot fill-slot="style_slot">
+          <link rel="stylesheet" href="++resource++oli.areadme/css/styles.css" />
+          <link rel="stylesheet" href="++resource++oli.areadme/css/bootstrap/bootstrap.min.css" />
+          <link href="++resource++oli.areadme/js/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+        </metal:styleslot>
+
+        <metal:javascriptslot fill-slot="javascript_head_slot">
+          <script type="text/javascript" src="++resource++oli.areadme/js/bower_components/angular/angular.min.js"></script>
+          <script type="text/javascript" src="++resource++oli.areadme/js/bower_components/angular-route/angular-route.min.js"></script>
+          <script type="text/javascript" src="++resource++oli.areadme/js/bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
+          <script type="text/javascript" src="++resource++oli.areadme/js/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+          <script type="text/javascript" src="++resource++oli.areadme/js/bower_components/message-center/message-center.js"></script>
+          <script type="text/javascript" src="++resource++oli.areadme/js/app.js"></script>
+          <script type="text/javascript" src="++resource++oli.areadme/js/controllers.js"></script>
+        </metal:javascriptslot>
+
+      </head>
+
+      <body>
+        <metal:block fill-slot="top_slot" tal:define="
+          disable_column_one python:request.set('disable_plone.leftcolumn',1);
+          disable_column_two python:request.set('disable_plone.rightcolumn',1);"
+          />
+
+        <metal:main fill-slot="content-core">
+          <metal:content-core define-macro="content-core">
+            <input type="hidden" id="readme_context_url"
+              tal:attributes="value context/@@plone_context_state/object_url"/>
+            <input type="hidden" id="tinymce_pattern"
+              tal:define="tiny_pat view/get_tinymce_options"
+              tal:attributes="value tiny_pat"/>
+            <input type="hidden" id="data_content"
+              tal:attributes="value context/data"/>
+            <input type="hidden" name="_authenticator"
+              tal:replace="structure context/@@authenticator/authenticator" />
+            <input type="hidden" name="_authenticated"
+              tal:attributes="value not: context/portal_membership/isAnonymousUser" />
+            <div 
+              tal:define="areadme python:context;"
+              class="areadme-container"
+              ng-app="AReadme"
+              ng-view>
+              </div>
+          </metal:content-core>
+        </metal:main>
+</html>

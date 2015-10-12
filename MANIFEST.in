@@ -1,0 +1,3 @@
+graft src/oli
+graft docs/
+include *.cfg *.rst *.in

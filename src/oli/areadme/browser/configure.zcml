@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="oli.areadme">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="oli.areadme.interfaces.IOliAreadmeLayer"
+      />
+
+  <!-- Views -->
+  <browser:page
+      for="oli.areadme.interfaces.IAReadme"
+      name="view"
+      template="templates/view.pt"
+      class="oli.areadme.browser.view.AReadmeView"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="oli.areadme.interfaces.IAReadme"
+      name="edit_data"
+      permission="cmf.ModifyPortalContent"
+      class="oli.areadme.browser.edit.AReadmeEdit"
+      attribute="handle_edit_data"
+      />
+  <!-- Publish static files -->
+  <browser:resourceDirectory
+      name="oli.areadme"
+      directory="static"
+      />
+
+</configure>

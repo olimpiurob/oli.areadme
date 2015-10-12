@@ -1,0 +1,6 @@
+[report]
+include =
+    src/oli/*
+omit =
+    */test*
+    */upgrades/*
