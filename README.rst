@@ -33,9 +33,8 @@ and then running "bin/buildout"
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/oli.areadme/issues
-- Source Code: https://github.com/collective/oli.areadme
-- Documentation: https://docs.plone.org/foo/bar
+- Issue Tracker: https://github.com/olimpiurob/oli.areadme/issues
+- Source Code: https://github.com/olimpiurob/oli.areadme
 
 
 Support
